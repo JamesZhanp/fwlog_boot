@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="fwalllog@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="fwalllog">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="atm"/>
+    <schema id="4" parent="1" name="chatrobot"/>
+    <schema id="5" parent="1" name="firewalllog"/>
+    <schema id="6" parent="1" name="fwlog"/>
+    <schema id="7" parent="1" name="information_schema"/>
+    <schema id="8" parent="1" name="library"/>
+    <schema id="9" parent="1" name="mysql"/>
+    <schema id="10" parent="1" name="nowcoder"/>
+    <schema id="11" parent="1" name="performance_schema"/>
+    <schema id="12" parent="1" name="sakila"/>
+    <schema id="13" parent="1" name="school"/>
+    <schema id="14" parent="1" name="student"/>
+    <schema id="15" parent="1" name="sys"/>
+    <schema id="16" parent="1" name="test"/>
+    <schema id="17" parent="1" name="world"/>
+    <table id="18" parent="2" name="action"/>
+    <table id="19" parent="2" name="destip"/>
+    <table id="20" parent="2" name="destport"/>
+    <table id="21" parent="2" name="events"/>
+    <table id="22" parent="2" name="fwlog"/>
+    <table id="23" parent="2" name="rawfwlog"/>
+    <table id="24" parent="2" name="safetydomain"/>
+    <table id="25" parent="2" name="sensitiveport"/>
+    <table id="26" parent="2" name="srcip"/>
+    <table id="27" parent="2" name="srcport"/>
+    <table id="28" parent="2" name="suspectedevents"/>
+    <table id="29" parent="2" name="type"/>
+    <column id="30" parent="18" name="id">
+      <Position>1</Position>
+      <DataType>int(2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="18" name="desc">
+      <Position>2</Position>
+      <DataType>varchar(15)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="32" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="33" parent="19" name="id">
+      <Position>1</Position>
+      <DataType>bigint(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="19" name="sTime">
+      <Position>2</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="35" parent="19" name="eTime">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="36" parent="19" name="value">
+      <Position>4</Position>
+      <DataType>int(10)|0</DataType>
+    </column>
+    <column id="37" parent="19" name="number">
+      <Position>5</Position>
+      <DataType>int(10)|0</DataType>
+    </column>
+    <column id="38" parent="19" name="average">
+      <Position>6</Position>
+      <DataType>double(10,2)|0</DataType>
+    </column>
+    <column id="39" parent="19" name="variance">
+      <Position>7</Position>
+      <DataType>double(10,2)|0</DataType>
+    </column>
+    <key id="40" parent="19" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="41" parent="20" name="id">
+      <Position>1</Position>
+      <DataType>bigint(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="20" name="sTime">
+      <Position>2</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="43" parent="20" name="eTime">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="44" parent="20" name="value">
+      <Position>4</Position>
+      <DataType>int(2)|0</DataType>
+    </column>
+    <column id="45" parent="20" name="number">
+      <Position>5</Position>
+      <DataType>int(10)|0</DataType>
+    </column>
+    <column id="46" parent="20" name="average">
+      <Position>6</Position>
+      <DataType>double(10,2)|0</DataType>
+    </column>
+    <column id="47" parent="20" name="variance">
+      <Position>7</Position>
+      <DataType>double(10,2)|0</DataType>
+    </column>
+    <key id="48" parent="20" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="49" parent="21" name="id">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="21" name="desc">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="51" parent="21" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="52" parent="21" name="events_ibfk_1">
+      <ColNames>id</ColNames>
+      <RefSchemaName>fwalllog</RefSchemaName>
+      <RefTableName>suspectedevents</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="53" parent="22" name="fwlogId">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="54" parent="22" name="time">
+      <Position>2</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="55" parent="22" name="srcIP">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+    </column>
+    <column id="56" parent="22" name="srcPort">
+      <Position>4</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="57" parent="22" name="destIP">
+      <Position>5</Position>
+      <DataType>int(10)|0</DataType>
+    </column>
+    <column id="58" parent="22" name="destPort">
+      <Position>6</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="59" parent="22" name="domain">
+      <Position>7</Position>
+      <DataType>int(1)|0</DataType>
+    </column>
+    <column id="60" parent="22" name="action">
+      <Position>8</Position>
+      <DataType>int(1)|0</DataType>
+    </column>
+    <column id="61" parent="22" name="number">
+      <Position>9</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <index id="62" parent="22" name="action">
+      <ColNames>action</ColNames>
+    </index>
+    <index id="63" parent="22" name="safetyDomain">
+      <ColNames>domain</ColNames>
+    </index>
+    <key id="64" parent="22" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>fwlogId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="65" parent="22" name="fwlog_ibfk_1">
+      <ColNames>domain</ColNames>
+      <RefSchemaName>fwalllog</RefSchemaName>
+      <RefTableName>safetydomain</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="66" parent="22" name="fwlog_ibfk_2">
+      <ColNames>action</ColNames>
+      <RefSchemaName>fwalllog</RefSchemaName>
+      <RefTableName>action</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="67" parent="23" name="rawFwlogId">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="68" parent="23" name="internalIP">
+      <Position>2</Position>
+      <DataType>varchar(15)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="23" name="produceTime">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="70" parent="23" name="saveTime">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="71" parent="23" name="mathedStrategy">
+      <Position>5</Position>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <column id="72" parent="23" name="originalSrcIP">
+      <Position>6</Position>
+      <DataType>varchar(15)|0</DataType>
+    </column>
+    <column id="73" parent="23" name="originalSrcPort">
+      <Position>7</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="74" parent="23" name="originalDestIP">
+      <Position>8</Position>
+      <DataType>varchar(15)|0</DataType>
+    </column>
+    <column id="75" parent="23" name="originalDestPort">
+      <Position>9</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="76" parent="23" name="convertedSrcIP">
+      <Position>10</Position>
+      <DataType>varchar(15)|0</DataType>
+    </column>
+    <column id="77" parent="23" name="convertedSrcPort">
+      <Position>11</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="78" parent="23" name="convertedDestIP">
+      <Position>12</Position>
+      <DataType>varchar(15)|0</DataType>
+    </column>
+    <column id="79" parent="23" name="convertedDestPort">
+      <Position>13</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="80" parent="23" name="protocolNumber">
+      <Position>14</Position>
+      <DataType>int(3)|0</DataType>
+    </column>
+    <column id="81" parent="23" name="safetyDomain">
+      <Position>15</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="82" parent="23" name="action">
+      <Position>16</Position>
+      <DataType>varchar(10)|0</DataType>
+    </column>
+    <key id="83" parent="23" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>rawFwlogId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="84" parent="24" name="id">
+      <Position>1</Position>
+      <DataType>int(2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="85" parent="24" name="desc">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="86" parent="24" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="87" parent="25" name="id">
+      <Position>1</Position>
+      <DataType>int(3)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="88" parent="25" name="desc">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="89" parent="25" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="90" parent="26" name="Id">
+      <Position>1</Position>
+      <DataType>bigint(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="91" parent="26" name="sTime">
+      <Position>2</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="92" parent="26" name="eTime">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="93" parent="26" name="value">
+      <Position>4</Position>
+      <DataType>int(10)|0</DataType>
+    </column>
+    <column id="94" parent="26" name="number">
+      <Position>5</Position>
+      <DataType>int(10)|0</DataType>
+    </column>
+    <column id="95" parent="26" name="average">
+      <Position>6</Position>
+      <DataType>double(10,2)|0</DataType>
+    </column>
+    <column id="96" parent="26" name="variance">
+      <Position>7</Position>
+      <DataType>double(10,2)|0</DataType>
+    </column>
+    <key id="97" parent="26" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>Id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="98" parent="27" name="id">
+      <Position>1</Position>
+      <DataType>bigint(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="99" parent="27" name="sTime">
+      <Position>2</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="100" parent="27" name="eTime">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="101" parent="27" name="value">
+      <Position>4</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="102" parent="27" name="number">
+      <Position>5</Position>
+      <DataType>int(10)|0</DataType>
+    </column>
+    <column id="103" parent="27" name="average">
+      <Position>6</Position>
+      <DataType>double(10,2)|0</DataType>
+    </column>
+    <column id="104" parent="27" name="variance">
+      <Position>7</Position>
+      <DataType>double(10,2)|0</DataType>
+    </column>
+    <key id="105" parent="27" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="106" parent="28" name="id">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="107" parent="28" name="sTime">
+      <Position>2</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="108" parent="28" name="eTime">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="109" parent="28" name="type">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="110" parent="28" name="Value">
+      <Position>5</Position>
+      <DataType>int(10)|0</DataType>
+    </column>
+    <index id="111" parent="28" name="type">
+      <ColNames>type</ColNames>
+    </index>
+    <key id="112" parent="28" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="113" parent="28" name="suspectedevents_ibfk_1">
+      <ColNames>type</ColNames>
+      <RefSchemaName>fwalllog</RefSchemaName>
+      <RefTableName>type</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="114" parent="29" name="id">
+      <Position>1</Position>
+      <DataType>int(2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="115" parent="29" name="desc">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="116" parent="29" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
