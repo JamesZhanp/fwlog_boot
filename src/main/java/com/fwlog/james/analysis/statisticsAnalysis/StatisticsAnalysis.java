@@ -2,6 +2,7 @@ package com.fwlog.james.analysis.statisticsAnalysis;
 
 import com.fwlog.james.entity.Fwlog;
 import com.fwlog.james.entity.Srcip;
+import com.fwlog.james.service.DestipService;
 import com.fwlog.james.service.FwlogService;
 import com.fwlog.james.service.SrcipService;
 import com.fwlog.james.utils.SpringUtil;
@@ -120,17 +121,8 @@ public class StatisticsAnalysis {
         SrcipService srcipService = (SrcipService) SpringUtil.getBean("srcipService");
 //        根据value值进行分组，在list中进行分组
         Map<Long,List<IP>> IPMap = new HashMap<>();
-        for (IP ip1 : srcIpList){
-            List<IP> tempList = IPMap.get(ip1.getValue());
-//            如果取不到数据，直接new一个新的ArrayList
-            if (tempList == null){
-                tempList = new ArrayList<>();
-                tempList.add(ip1);
-                IPMap.put(ip1.getValue(),tempList);
-            }else{
-                tempList.add(ip1);
-            }
-        }
+        IPMap = listToMap(srcIpList);
+
 //        for (Long value : IPMap.keySet()){
 //            System.out.println(IPMap.get(value));
 //        }
@@ -203,7 +195,39 @@ public class StatisticsAnalysis {
         }
     }
 
-//    求destIp在访问事件中的均值和方差
+    //    求destIp在访问事件中的均值和方差
+    private static void dataDestIpAnalysis(){
+//        bean注入
+        DestipService destipService = (DestipService) SpringUtil.getBean("destipService");
+        //        根据value值进行分组，在list中进行分组
+        Map<Long,List<IP>> IPMap = new HashMap<>();
+        IPMap = listToMap(destIpList);
+
+        for (Long value : IPMap.keySet()){
+            //            根据IP值的不同进行分组
+            List<IP> ipGroup = IPMap.get(value);
+
+            int totalNum = 0;
+            ArrayList count = new ArrayList();
+        }
+    }
+
+    private static Map<Long,List<IP>> listToMap(List<IP> ipList){
+        Map<Long,List<IP>> IPMap = new HashMap<>();
+        for (IP ip1 : ipList){
+            List<IP> tempList = IPMap.get(ip1.getValue());
+//            如果取不到数据，直接new一个新的ArrayList
+            if (tempList == null){
+                tempList = new ArrayList<>();
+                tempList.add(ip1);
+                IPMap.put(ip1.getValue(),tempList);
+            }else{
+                tempList.add(ip1);
+            }
+        }
+        return IPMap;
+    }
+
     public void analysis(){
         FwlogService fwlogService = (FwlogService) SpringUtil.getBean("fwlogService");
 
