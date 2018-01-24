@@ -7,7 +7,7 @@ public class Destip {
   private Date stime;
   private Date etime;
   private Long value;
-  private Long number;
+  private Integer number;
   private Double average;
   private Double variance;
 
@@ -43,11 +43,11 @@ public class Destip {
     this.value = value;
   }
 
-  public Long getNumber() {
+  public Integer getNumber() {
     return number;
   }
 
-  public void setNumber(Long number) {
+  public void setNumber(Integer number) {
     this.number = number;
   }
 

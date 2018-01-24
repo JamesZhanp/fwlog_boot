@@ -1,5 +1,6 @@
 package com.fwlog.james.analysis.statisticsAnalysis;
 
+import com.fwlog.james.entity.Destip;
 import com.fwlog.james.entity.Fwlog;
 import com.fwlog.james.entity.Srcip;
 import com.fwlog.james.service.DestipService;
@@ -173,7 +174,6 @@ public class StatisticsAnalysis {
                             if (srcip.getEtime().getTime() - srcip.getStime().getTime() > 1000){
                                 srcipService.save(srcip);
                             }
-
                             earlyTime = ipGroup.get(i + 1).getsTime();
                             totalNum = 0;
                             count.clear();
@@ -209,9 +209,53 @@ public class StatisticsAnalysis {
 
             int totalNum = 0;
             ArrayList count = new ArrayList();
+            int destIpLen = ipGroup.size();
+            for (int i = 0 ; i < destIpLen ; i++){
+//                动态数组最后一个单独思考
+                if (i == destIpLen - 1){
+                    if (ipGroup.get(i).getsTime().getTime() == ipGroup.get(i - 1).geteTime().getTime()){
+                        totalNum += ipGroup.get(i).getCount();
+                        count.add(ipGroup.get(i).getCount());
+                        laterTime = ipGroup.get(i).geteTime();
+                        Destip destip = new Destip();
+                        destip.setEtime(laterTime);
+                        destip.setStime(earlyTime);
+                        destip.setValue(ipGroup.get(i).getValue());
+                        destip.setNumber(totalNum);
+                        destip.setAverage(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getAverage(count)));
+                        destip.setVariance(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getVariance(count)));
+
+                        destipService.save(destip);
+                        totalNum = 0;
+                        count.clear();
+                    }
+                }else{
+                    totalNum += ipGroup.get(i).getCount();
+                    count.add(ipGroup.get(i).getCount());
+//                        连续访问事件
+                    if (ipGroup.get(i + 1).getsTime().getTime() > ipGroup.get(i).geteTime().getTime()) {
+                        laterTime = ipGroup.get(i).geteTime();
+                        Destip destip = new Destip();
+                        destip.setEtime(laterTime);
+                        destip.setStime(earlyTime);
+                        destip.setValue(ipGroup.get(i).getValue());
+                        destip.setNumber(totalNum);
+                        destip.setAverage(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getAverage(count)));
+                        destip.setVariance(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getVariance(count)));
+                        //只有一秒的访问事件不保存至数据库
+                        if (destip.getEtime().getTime() - destip.getStime().getTime() > 1000) {
+                            destipService.save(destip);
+                        }
+                        earlyTime = ipGroup.get(i + 1).getsTime();
+                        totalNum = 0;
+                        count.clear();
+                    }
+                }
+            }
         }
     }
 
+//    将list转变成map，作用是将list按照ip分组
     private static Map<Long,List<IP>> listToMap(List<IP> ipList){
         Map<Long,List<IP>> IPMap = new HashMap<>();
         for (IP ip1 : ipList){
@@ -254,10 +298,11 @@ public class StatisticsAnalysis {
         destIpList.get(0).setCount(destIpList.get(0).getCount() - 1);
 
 //        for debug
-        System.out.println(srcIpList.size());
-        System.out.println(destIpList.size());
+//        System.out.println(srcIpList.size());
+//        System.out.println(destIpList.size());
         //再计算出这个访问事件下的各个IP的访问的均值，方差等
 //        求出一个访问事件当中的源IP和目的IP地址的均值和方差
              dataSrcIpAnalysis();
+             dataDestIpAnalysis();
     }
 }
