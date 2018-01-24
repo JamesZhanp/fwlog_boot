@@ -1,16 +1,16 @@
 package com.fwlog.james.analysis.statisticsAnalysis;
 
-import com.fwlog.james.analysis.preAnalysis.Pretreatment;
 import com.fwlog.james.entity.Fwlog;
+import com.fwlog.james.entity.Srcip;
 import com.fwlog.james.service.FwlogService;
+import com.fwlog.james.service.SrcipService;
 import com.fwlog.james.utils.SpringUtil;
+import com.fwlog.james.utils.VarianceUtil;
 import org.springframework.context.annotation.Configuration;
 
-import javax.naming.ldap.SortResponseControl;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 统计处理，要做的事情，统计各个源IP地址和目的IP地址的访问情况
@@ -21,8 +21,12 @@ import java.util.List;
  */
 @Configuration
 public class StatisticsAnalysis {
-    //保存上次事件的事件
+    //统计单位时间内的访问次数使用的时间戳
     private static Date lastTime = null;
+
+    //统计访问事件当中使用的时间戳
+    private static Date earlyTime = null;
+    private static Date laterTime = null;
     //事件间隔
     private static long MIN_INTERVAL = 1000;
     //时间的格式
@@ -52,7 +56,7 @@ public class StatisticsAnalysis {
         if(srcIpList.size() == 0){
             IP ip1 = new IP();
             ip1.setsTime(lastTime);
-            ip1.seteTime(new Date(lastTime.getTime() + MIN_INTERVAL));
+            ip1.seteTime(new Timestamp(lastTime.getTime() + MIN_INTERVAL));
             ip1.setValue(fwlog.getSrcip());
             ip1.setCount(fwlog.getNumber());
             srcIpList.add(ip1);
@@ -86,6 +90,8 @@ public class StatisticsAnalysis {
             ip2.seteTime(new Date(lastTime.getTime() + MIN_INTERVAL));
             srcIpList.add(ip2);
         }
+//        在SrcIP处理完之后就重新fu原始值
+        flag = false;
 //        统计每秒的目的IP的访问情况
         for (IP ip1 : destIpList){
             if ((ip1.getValue().equals(ip[1])) &&
@@ -101,12 +107,103 @@ public class StatisticsAnalysis {
             ip2.setCount(fwlog.getNumber());
             ip2.setValue(ip[1]);
             ip2.setsTime(lastTime);
-            ip2.seteTime(new Date(lastTime.getTime() + MIN_INTERVAL));
+            ip2.seteTime(new Timestamp(lastTime.getTime() + MIN_INTERVAL));
             destIpList.add(ip2);
         }
-        //保存至数据库
+
+        flag = false;
     }
 
+//    求srcIp方差和均值的函数，之后保存
+    private static void dataSrcIpAnalysis(){
+//        注入bean
+        SrcipService srcipService = (SrcipService) SpringUtil.getBean("srcipService");
+//        根据value值进行分组，在list中进行分组
+        Map<Long,List<IP>> IPMap = new HashMap<>();
+        for (IP ip1 : srcIpList){
+            List<IP> tempList = IPMap.get(ip1.getValue());
+//            如果取不到数据，直接new一个新的ArrayList
+            if (tempList == null){
+                tempList = new ArrayList<>();
+                tempList.add(ip1);
+                IPMap.put(ip1.getValue(),tempList);
+            }else{
+                tempList.add(ip1);
+            }
+        }
+//        for (Long value : IPMap.keySet()){
+//            System.out.println(IPMap.get(value));
+//        }
+//        统计事件中的总的访问次数
+        int totalNum = 0;
+        for (Long value : IPMap.keySet()){
+
+//            根据IP值的不同进行分组
+            List<IP> ipGroup = IPMap.get(value);
+//            保存单位时间的该ip的访问值
+            ArrayList count = new ArrayList();
+            int srcIpListLength = ipGroup.size();
+            if (srcIpListLength >= 2){
+                earlyTime = ipGroup.get(0).getsTime();
+                for (int i = 0 ; i < srcIpListLength ; i ++){
+//                    动态数组的最后一个访问单独考虑
+                    if (i == srcIpListLength - 1){
+                        if (ipGroup.get(i).getsTime().getTime() == ipGroup.get(i - 1).geteTime().getTime()){
+                            totalNum += ipGroup.get(i).getCount();
+                            count.add(ipGroup.get(i).getCount());
+                            laterTime = ipGroup.get(i).geteTime();
+                            Srcip srcip = new Srcip();
+                            srcip.setEtime(laterTime);
+                            srcip.setStime(earlyTime);
+                            srcip.setValue(ipGroup.get(i).getValue());
+                            srcip.setNumber(totalNum);
+                            srcip.setAverage(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getAverage(count)));
+                            srcip.setVariance(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getVariance(count)));
+
+                            srcipService.save(srcip);
+                            totalNum = 0;
+                            count.clear();
+                        }
+                    }else{
+                        totalNum += ipGroup.get(i).getCount();
+                        count.add(ipGroup.get(i).getCount());
+//                        连续访问事件
+                        if (ipGroup.get(i + 1).getsTime().getTime() > ipGroup.get(i).geteTime().getTime()){
+                            laterTime = ipGroup.get(i).geteTime();
+                            Srcip srcip = new Srcip();
+                            srcip.setEtime(laterTime);
+                            srcip.setStime(earlyTime);
+                            srcip.setValue(ipGroup.get(i).getValue());
+                            srcip.setNumber(totalNum);
+                            srcip.setAverage(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getAverage(count)));
+                            srcip.setVariance(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getVariance(count)));
+                            //只有一秒的访问事件不保存至数据库
+                            if (srcip.getEtime().getTime() - srcip.getStime().getTime() > 1000){
+                                srcipService.save(srcip);
+                            }
+
+                            earlyTime = ipGroup.get(i + 1).getsTime();
+                            totalNum = 0;
+                            count.clear();
+                        }
+                    }
+                }
+            }
+//          else{
+//                Srcip srcip = new Srcip();
+//                srcip.setValue(ipGroup.get(0).getValue());
+//                srcip.setAverage(ipGroup.get(0).getCount() * 1.00);
+//                srcip.setVariance(0.00);
+//                srcip.setNumber(ipGroup.get(0).getCount());
+//                srcip.setStime(ipGroup.get(0).getsTime());
+//                srcip.setEtime(ipGroup.get(0).geteTime());
+//                srcipService.save(srcip);
+//
+//            }
+        }
+    }
+
+//    求destIp在访问事件中的均值和方差
     public void analysis(){
         FwlogService fwlogService = (FwlogService) SpringUtil.getBean("fwlogService");
 
@@ -115,19 +212,28 @@ public class StatisticsAnalysis {
             try{
                  StatisticsAnalysis.statisticsAnalysis(fwlog);
 //                 每次循环结束之后，将flag置为false
-                 flag = false;
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
+
+//        for (int i = 0 ; i < 1000 ; i ++){
+//            try{
+//                StatisticsAnalysis.statisticsAnalysis(fwlogs.get(i));
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+//        }
+
         //当动态数组为空时插入数据，此处进行回原
         srcIpList.get(0).setCount(srcIpList.get(0).getCount() - 1);
         destIpList.get(0).setCount(destIpList.get(0).getCount() - 1);
 
 //        for debug
-//        System.out.println(srcIpList.size());
-//        System.out.println(destIpList.size());
-        //在计算出这个访问事件下的各个IP的访问的均值，方差等
-
+        System.out.println(srcIpList.size());
+        System.out.println(destIpList.size());
+        //再计算出这个访问事件下的各个IP的访问的均值，方差等
+//        求出一个访问事件当中的源IP和目的IP地址的均值和方差
+             dataSrcIpAnalysis();
     }
 }

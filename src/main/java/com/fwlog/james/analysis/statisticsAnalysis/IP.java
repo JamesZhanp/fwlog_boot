@@ -41,4 +41,13 @@ public class IP {
     }
 
 
+    @Override
+    public String toString() {
+        return "IP{" +
+                "sTime=" + sTime +
+                ", eTime=" + eTime +
+                ", value=" + value +
+                ", count=" + count +
+                '}';
+    }
 }

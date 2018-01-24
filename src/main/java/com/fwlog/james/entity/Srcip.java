@@ -1,15 +1,16 @@
 package com.fwlog.james.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "srcip")
 public class Srcip {
   private Long id;
-  private java.sql.Timestamp stime;
-  private java.sql.Timestamp etime;
+  private Date stime;
+  private Date etime;
   private Long value;
-  private Long number;
+  private Integer number;
   private Double average;
   private Double variance;
 
@@ -23,19 +24,19 @@ public class Srcip {
     this.id = id;
   }
 
-  public java.sql.Timestamp getStime() {
+  public Date getStime() {
     return stime;
   }
 
-  public void setStime(java.sql.Timestamp stime) {
+  public void setStime(Date stime) {
     this.stime = stime;
   }
 
-  public java.sql.Timestamp getEtime() {
+  public Date getEtime() {
     return etime;
   }
 
-  public void setEtime(java.sql.Timestamp etime) {
+  public void setEtime(Date etime) {
     this.etime = etime;
   }
 
@@ -47,11 +48,11 @@ public class Srcip {
     this.value = value;
   }
 
-  public Long getNumber() {
+  public Integer getNumber() {
     return number;
   }
 
-  public void setNumber(Long number) {
+  public void setNumber(Integer number) {
     this.number = number;
   }
 
