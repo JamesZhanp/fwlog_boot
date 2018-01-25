@@ -29,7 +29,7 @@ public class StatisticsAnalysis {
     //统计访问事件当中使用的时间戳
     private static Date earlyTime = null;
     private static Date laterTime = null;
-    //事件间隔
+    //时间间隔
     private static long MIN_INTERVAL = 1000;
     //时间的格式
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -210,48 +210,52 @@ public class StatisticsAnalysis {
             int totalNum = 0;
             ArrayList count = new ArrayList();
             int destIpLen = ipGroup.size();
-            for (int i = 0 ; i < destIpLen ; i++){
+            if (destIpLen >= 2){
+                earlyTime = ipGroup.get(0).getsTime();
+                for (int i = 0 ; i < destIpLen ; i++){
 //                动态数组最后一个单独思考
-                if (i == destIpLen - 1){
-                    if (ipGroup.get(i).getsTime().getTime() == ipGroup.get(i - 1).geteTime().getTime()){
+                    if (i == destIpLen - 1){
+                        if (ipGroup.get(i).getsTime().getTime() == ipGroup.get(i - 1).geteTime().getTime()){
+                            totalNum += ipGroup.get(i).getCount();
+                            count.add(ipGroup.get(i).getCount());
+                            laterTime = ipGroup.get(i).geteTime();
+                            Destip destip = new Destip();
+                            destip.setEtime(laterTime);
+                            destip.setStime(earlyTime);
+                            destip.setValue(ipGroup.get(i).getValue());
+                            destip.setNumber(totalNum);
+                            destip.setAverage(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getAverage(count)));
+                            destip.setVariance(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getVariance(count)));
+
+                            destipService.save(destip);
+                            totalNum = 0;
+                            count.clear();
+                        }
+                    }else{
                         totalNum += ipGroup.get(i).getCount();
                         count.add(ipGroup.get(i).getCount());
-                        laterTime = ipGroup.get(i).geteTime();
-                        Destip destip = new Destip();
-                        destip.setEtime(laterTime);
-                        destip.setStime(earlyTime);
-                        destip.setValue(ipGroup.get(i).getValue());
-                        destip.setNumber(totalNum);
-                        destip.setAverage(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getAverage(count)));
-                        destip.setVariance(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getVariance(count)));
-
-                        destipService.save(destip);
-                        totalNum = 0;
-                        count.clear();
-                    }
-                }else{
-                    totalNum += ipGroup.get(i).getCount();
-                    count.add(ipGroup.get(i).getCount());
 //                        连续访问事件
-                    if (ipGroup.get(i + 1).getsTime().getTime() > ipGroup.get(i).geteTime().getTime()) {
-                        laterTime = ipGroup.get(i).geteTime();
-                        Destip destip = new Destip();
-                        destip.setEtime(laterTime);
-                        destip.setStime(earlyTime);
-                        destip.setValue(ipGroup.get(i).getValue());
-                        destip.setNumber(totalNum);
-                        destip.setAverage(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getAverage(count)));
-                        destip.setVariance(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getVariance(count)));
-                        //只有一秒的访问事件不保存至数据库
-                        if (destip.getEtime().getTime() - destip.getStime().getTime() > 1000) {
-                            destipService.save(destip);
-                        }
-                        earlyTime = ipGroup.get(i + 1).getsTime();
-                        totalNum = 0;
-                        count.clear();
-                    }
-                }
-            }
+                        if (ipGroup.get(i + 1).getsTime().getTime() > ipGroup.get(i).geteTime().getTime()) {
+                            laterTime = ipGroup.get(i).geteTime();
+                            Destip destip = new Destip();
+                            destip.setEtime(laterTime);
+                            destip.setStime(earlyTime);
+                            destip.setValue(ipGroup.get(i).getValue());
+                            destip.setNumber(totalNum);
+                            destip.setAverage(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getAverage(count)));
+                            destip.setVariance(VarianceUtil.keepTwoDecimalPlaces(VarianceUtil.getVariance(count)));
+                            //只有一秒的访问事件不保存至数据库
+                            if (destip.getEtime().getTime() - destip.getStime().getTime() > 1000) {
+                                destipService.save(destip);
+                            }
+                            earlyTime = ipGroup.get(i + 1).getsTime();
+                            totalNum = 0;
+                            count.clear();
+                        }//if
+                    }//else
+                }//for
+            }//if
+
         }
     }
 
@@ -302,7 +306,7 @@ public class StatisticsAnalysis {
 //        System.out.println(destIpList.size());
         //再计算出这个访问事件下的各个IP的访问的均值，方差等
 //        求出一个访问事件当中的源IP和目的IP地址的均值和方差
-             dataSrcIpAnalysis();
+//             dataSrcIpAnalysis();
              dataDestIpAnalysis();
     }
 }

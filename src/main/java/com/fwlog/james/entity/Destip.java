@@ -1,7 +1,10 @@
 package com.fwlog.james.entity;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "destip")
 public class Destip {
   private Long id;
   private Date stime;
@@ -11,6 +14,8 @@ public class Destip {
   private Double average;
   private Double variance;
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public Long getId() {
     return id;
   }

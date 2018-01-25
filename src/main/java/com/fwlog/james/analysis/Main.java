@@ -1,5 +1,6 @@
 package com.fwlog.james.analysis;
 
+import com.fwlog.james.analysis.eventAnalysis.EventAnalysis;
 import com.fwlog.james.analysis.preAnalysis.LogRead;
 import com.fwlog.james.analysis.preAnalysis.Pretreatment;
 import com.fwlog.james.analysis.preAnalysis.RealTimeReadFile;
@@ -52,7 +53,8 @@ public class Main {
 //                 new StatisticsAnalysis().statisticsAnalysis(fwlogList.get(0));
 //                 fwlogList.remove(0);
 //             }
-             new StatisticsAnalysis().analysis();
+//             new StatisticsAnalysis().analysis();
+             new EventAnalysis().eventAnalysis();
          }catch (Exception e){
              e.printStackTrace();
          }
