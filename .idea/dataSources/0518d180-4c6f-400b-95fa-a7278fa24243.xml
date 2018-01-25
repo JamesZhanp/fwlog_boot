@@ -378,7 +378,7 @@
     </column>
     <column id="107" parent="29" name="Value">
       <Position>5</Position>
-      <DataType>int(10)|0</DataType>
+      <DataType>bigint(15)|0</DataType>
     </column>
     <index id="108" parent="29" name="type">
       <ColNames>type</ColNames>

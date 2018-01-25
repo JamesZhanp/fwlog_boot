@@ -9,7 +9,7 @@ public class Suspectedevents {
   private Long id;
   private Date stime;
   private Date etime;
-  private Long type;
+  private Integer type;
   private Long value;
 
   @Id
@@ -38,11 +38,11 @@ public class Suspectedevents {
     this.etime = etime;
   }
 
-  public Long getType() {
+  public Integer getType() {
     return type;
   }
 
-  public void setType(Long type) {
+  public void setType(Integer type) {
     this.type = type;
   }
 

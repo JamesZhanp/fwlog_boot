@@ -5,6 +5,8 @@ import com.fwlog.james.repository.SuspectedeventsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SuspectedeventsService {
     @Autowired
@@ -14,4 +16,10 @@ public class SuspectedeventsService {
         repository.save(suspectedevents);
         return suspectedevents;
     }
+
+    public List<Suspectedevents> findAll(){
+        List<Suspectedevents> suspectedevents = repository.findAll();
+        return suspectedevents;
+    }
+
 }
