@@ -21,6 +21,8 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'org.eclipse', name: 'bittorrent', version: '0.3.0-v20070627-1030'
     compile("org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf:1.5.9.RELEASE")
+    compile('net.sourceforge.nekohtml:nekohtml:1.9.22')
     compile("org.springframework.boot:spring-boot-starter-data-jpa:1.5.9.RELEASE")
     compile("org.springframework.boot:spring-boot-starter-test:1.5.9.RELEASE")
     compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.5'

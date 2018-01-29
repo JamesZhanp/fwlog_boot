@@ -6,7 +6,7 @@ import java.util.Date;
 @Entity
 @Table(name = "suspectedevents")
 public class Suspectedevents {
-  private Long id;
+  private Integer id;
   private Date stime;
   private Date etime;
   private Integer type;
@@ -14,11 +14,11 @@ public class Suspectedevents {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  public Long getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
