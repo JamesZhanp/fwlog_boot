@@ -1,0 +1,14 @@
+.layui-nav{
+    position:relative;
+}
+ul div .logo img{
+    /*width:50%;*/
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    float:left;
+}
+.leftNav{
+    /*font-size:30px;*/
+    text-align: right;
+}

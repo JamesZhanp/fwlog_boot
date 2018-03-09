@@ -7,12 +7,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.persistence.EntityManagerFactory;
+import java.util.List;
+import java.util.logging.Logger;
 
 
 /**
@@ -25,6 +28,7 @@ import javax.persistence.EntityManagerFactory;
 @ComponentScan(basePackages = "com.fwlog.james")
 public class Application extends WebMvcConfigurerAdapter{
 
+//    private static Logger logger = Logger.getLogger(Application.class);
     @Autowired
     EntityManagerFactory entityManagerFactory;
     @Bean
@@ -46,6 +50,7 @@ public class Application extends WebMvcConfigurerAdapter{
             }
         };
     }
+
     public static void main(String[] args) throws Exception{
         SpringApplication.run(Application.class,args);
     }

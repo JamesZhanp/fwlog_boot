@@ -28,7 +28,7 @@ public class Main {
     private RawfwlogService rawfwlogService;
     private List<Rawfwlog> rawfwlogs = LogRead.rawfwlogs;
     private List<Rawfwlog> rawfwlogsRealTime = RealTimeReadFile.rawfwlogs;
-//    private List<Fwlog> fwlogList = Pretreatment.fwlogList;
+    private List<Fwlog> fwlogList = Pretreatment.fwlogList;
     private boolean flag = true;
 
     @RequestMapping("/logFileRead")
@@ -39,9 +39,9 @@ public class Main {
              if (rawfwlogs.size() > 0){
                  Rawfwlog rawfwlog = rawfwlogs.get(0);
 //                 把原始日志信息保存到数据表单中
-//                 rawfwlogService.save(rawfwlog);
+                 rawfwlogService.save(rawfwlog);
 //                 数据预处理之后将该信息保存到预处理表单当中
-//                 new Pretreatment().pretreatment(rawfwlog);
+                 new Pretreatment().pretreatment(rawfwlog);
                  rawfwlogs.remove(0);
              }else{
                  flag = false;
@@ -53,7 +53,7 @@ public class Main {
 //                 new StatisticsAnalysis().statisticsAnalysis(fwlogList.get(0));
 //                 fwlogList.remove(0);
 //             }
-//             new StatisticsAnalysis().analysis();
+             new StatisticsAnalysis().analysis();
              new EventAnalysis().eventAnalysis();
          }catch (Exception e){
              e.printStackTrace();

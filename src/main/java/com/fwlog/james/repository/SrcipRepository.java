@@ -17,4 +17,6 @@ public interface SrcipRepository extends JpaRepository<Srcip,Long>{
     List<Srcip> findAll();
 
     Srcip save(Srcip srcip);
+
+
 }

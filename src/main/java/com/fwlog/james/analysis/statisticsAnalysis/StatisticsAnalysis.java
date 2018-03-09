@@ -306,7 +306,7 @@ public class StatisticsAnalysis {
 //        System.out.println(destIpList.size());
         //再计算出这个访问事件下的各个IP的访问的均值，方差等
 //        求出一个访问事件当中的源IP和目的IP地址的均值和方差
-//             dataSrcIpAnalysis();
+             dataSrcIpAnalysis();
              dataDestIpAnalysis();
     }
 }

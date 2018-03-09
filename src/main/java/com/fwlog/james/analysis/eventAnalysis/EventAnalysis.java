@@ -250,7 +250,7 @@ public class EventAnalysis {
     }
 
     public void eventAnalysis(){
-//        subspectedEvents();
+        subspectedEvents();
         eventsMakeSure();
     }
 
