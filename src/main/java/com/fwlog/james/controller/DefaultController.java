@@ -14,19 +14,36 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class DefaultController {
 
-    @GetMapping("/")
-    public String index(){
-        return "login";
-    }
 
-    @GetMapping("/login")
+    @GetMapping("/fwlog/login")
     public String login(){
         return "login";
     }
 
+    @GetMapping("/fwlog/index")
+    public String index(){
+        return "pages/index";
+    }
+
+    @GetMapping("/fwlog/securityAna")
+    public String securityAna(){
+        return "pages/securityAna";
+    }
+
+    @GetMapping("/fwlog/securityTab")
+    public String securityTab(){
+        return "pages/securityTab";
+    }
+
+    @GetMapping("/fwlog/trafficAna")
+    public String trafficAna(){
+        return "pages/trafficAna";
+    }
+
     @GetMapping("/logout")
     public String logout(HttpSession session){
+//        清除session内部的数据
         session.removeAttribute(WebSecurityConfig.SESSION_KEY);
-        return "redirect:/login";
+        return "redirect:/fwlog/login";
     }
 }

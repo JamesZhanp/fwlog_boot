@@ -19,7 +19,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @PostMapping("/loginVerify")
+    @PostMapping("/fwlog/loginVerify/index")
     public String loginVerify(String name, String password, HttpSession session){
         User user = new User();
         user.setName(name);
@@ -28,7 +28,7 @@ public class LoginController {
         boolean verify = loginService.verifyLogin(user);
         if (verify){
             session.setAttribute(WebSecurityConfig.SESSION_KEY,name);
-            return "index";
+            return "pages/index";
         }else{
             return "loginError";
 //            return "redirect:/login";

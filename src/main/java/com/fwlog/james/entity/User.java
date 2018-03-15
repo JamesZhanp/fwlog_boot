@@ -1,5 +1,7 @@
 package com.fwlog.james.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,7 @@ public class User {
     this.id = id;
   }
 
+  @NotBlank(message = "用户名不能为空")
   public String getName() {
     return name;
   }
@@ -27,6 +30,7 @@ public class User {
     this.name = name;
   }
 
+  @NotBlank(message = "密码不能为空")
   public String getPassword() {
     return password;
   }

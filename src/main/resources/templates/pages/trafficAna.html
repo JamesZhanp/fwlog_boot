@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>流量分析</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/common/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="/admin/css/nav.css">
+    <link rel="stylesheet" href="/admin/css/trafficAna.css">
+    <script type="text/javascript" src="/admin/jsplug/echarts.js"></script>
+</head>
+<body>
+
+<!--导航栏-->
+<ul class="layui-nav">
+    <div class="admin-logo-box">
+        <a class="logo" href="#">
+            <img src="/common/images/logo1.png" alt="" width="50%" height="70%">
+        </a>
+    </div>
+    <div class="leftNav">
+        <li class="layui-nav-item">
+            <a href="index.html">首页</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="securityTab.html">安全分析</a>
+            <dl class="layui-nav-child">
+                <dd><a href="securityTab.html">可视化</a></dd>
+                <dd><a href="securityAna.html">攻击事件</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="trafficAna.html">流量分析</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="fileLoad.html">日志管理</a>
+            <dl class="layui-nav-child">
+                <dd><a href="fileLoad.html">上传日志</a></dd>
+                <dd><a href="javascript:;">配置管理</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item" lay-unselect="">
+            <a href="javascript:;"><img src="/common/images/user.jpg" class="layui-nav-img">我</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">修改信息</a></dd>
+                <dd><a href="/logout">退出系统</a></dd>
+            </dl>
+        </li>
+    </div>
+</ul>
+<div class="mainContent layui-fluid">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md6">
+            <!--发起访问最多的源IP地址-->
+            <div class="source-ip-statics">
+                <span class="source-ip-title">发起访问最多的源IP地址</span>
+                <div class="source-ip-charts" id="srcIpAddr" style="width: 600px;height: 300px;"></div>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <!--被访问最多的目的IP地址-->
+            <div class="dest-ip-statics">
+                <span class="dest-ip-title">被访问最多的目的IP地址</span>
+                <div class="dest-ip-charts" id="destIpAddr" style="width: 600px;height: 300px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md6">
+            <!--本月出入防火墙流量趋势图-->
+            <div class="month-flow-statics">
+                <span class="month-flow-title">本月出入防火墙流量趋势图</span>
+                <div class="month-flow-charts" id="ioFlow" style="width: 600px;height: 300px;"></div>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <!--协议组别访问情况-->
+            <div class="protocol-access-statics">
+                <span class="protocol-access-title">协议组访问情况</span>
+                <div class="protocol-access-chart" id="protocolAccess" style="width: 600px;height: 300px;"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<!--<div class="layui-footer">© JamesZhan-Lab514 版权所有</div>-->
+<script type="text/javascript" src="/admin/js/trafficAna.js" charset="utf-8"></script>
+
+<script src="/common/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use('element', function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        //监听导航点击
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
+    });
+</script>
+</body>
+</html>

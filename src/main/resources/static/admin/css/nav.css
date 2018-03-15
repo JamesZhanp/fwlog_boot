@@ -1,3 +1,7 @@
+body{
+    background-color:#d2d2d2 ;
+    opacity: 31;
+}
 .layui-nav{
     position:relative;
 }
@@ -11,4 +15,7 @@ ul div .logo img{
 .leftNav{
     /*font-size:30px;*/
     text-align: right;
+}
+.layui-footer{
+    padding: auto;
 }

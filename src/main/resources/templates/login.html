@@ -20,19 +20,20 @@
         <strong>防火墙日志分析系统</strong>
         <em>Analysis System</em>
     </h1>
-    <form name="loginForm" accept-charset="utf-8" action="loginVerify" method="POST">
+    <form name="loginForm" accept-charset="utf-8" action="/fwlog/loginVerify/index" method="POST">
         <div class="layui-user-icon larry-login">
             <input name="name" type="text" placeholder="用户名" class="login_txtbx"/>
         </div>
         <div class="layui-pwd-icon larry-login">
             <input name="password" type="password" placeholder="密码" class="login_txtbx" />
         </div>
-        <!--<div class="layui-val-icon larry-login">-->
-            <!--<div class="layui-code-box">-->
-                <!--<input type="text" id="code" name="code" placeholder="验证码" maxlength="4" class="login_txtbx">-->
-                <!--<img src="/admin/images/verifyimg.png" alt="" class="verifyImg" id="verifyImg" onclick="javascript:this.src='xxx'+Math.random();">-->
-            <!--</div>-->
-        <!--</div>-->
+        <!--验证码-->
+        <div class="layui-val-icon larry-login">
+            <div class="layui-code-box">
+                <input type="text" id="code" name="code" placeholder="验证码" maxlength="4" class="login_txtbx">
+                <img src="/admin/images/verifyimg.png" alt="" class="verifyImg" id="verifyImg" onclick="javascript:this.src='xxx'+Math.random();">
+            </div>
+        </div>
         <div class="layui-submit larry-login">
             <input type="submit" value="立即登陆" class="submit_btn"/>
         </div>
@@ -50,10 +51,6 @@
             background: "#141414",
             color: "#E6E6E6"
         });
-//        登录链接测试，使用时可删除
-//        $(".submit_btn").click(function(){
-//            location.href="index.html";
-//        });
     });
 </script>
 </body>
