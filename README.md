@@ -13,4 +13,6 @@
 1.entity里面存放日志处理时的类
 2.mode里存放的是前后单数据交互时的类
 
+
+对于spring boot而言，controller返回的均为页面，如果需要返回的是json数据等，使用RestController
 @author：jamesZhan

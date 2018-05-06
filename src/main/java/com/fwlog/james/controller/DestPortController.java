@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +37,8 @@ public class DestPortController {
     }
 
     @RequestMapping(value = "/getDestPort",method = RequestMethod.GET)
-    public List<PortEntity> getDestPort(){
+    public List<PortEntity> getDestPort(HttpServletResponse response) throws IOException{
+        PrintWriter out = response.getWriter();
         List<Fwlog> fwlogs = fwlogService.getAll();
         List<PortEntity> portEntities = new ArrayList<>();
         Map<Integer,List<Fwlog>> fwlogMap = listToMap(fwlogs);

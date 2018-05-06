@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
  * 分为两类：上传日志文件和实时读取日志文件
  *
  */
-@Controller
+@RestController
 @RequestMapping(value = "/fwlog")
 public class Main {
     @Autowired
@@ -31,6 +32,9 @@ public class Main {
     private List<Fwlog> fwlogList = Pretreatment.fwlogList;
     private boolean flag = true;
 
+    /**
+     * 上传日志文件的接口
+     */
     @RequestMapping("/logFileRead")
     @ResponseBody
     public void readLogFileAnalysis(){

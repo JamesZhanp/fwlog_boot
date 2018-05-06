@@ -1,0 +1,19 @@
+body{
+    margin:auto;
+    padding:auto;
+}
+.mainContent{
+    margin-top: 20px;
+}
+.protocol-access-statics, .source-ip-statics, .dest-ip-statics, .month-flow-statics{
+    background-color: white;
+}
+.month-flow-statics ,.protocol-access-statics{
+    margin-top: 10px;
+}
+.source-ip-title, .dest-ip-title, .month-flow-title, .protocol-access-title{
+    display: inline-block;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-left:20px;
+}

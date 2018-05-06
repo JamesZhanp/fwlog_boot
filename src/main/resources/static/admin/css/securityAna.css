@@ -1,0 +1,16 @@
+/*安全事件分析css
+created by jamesZhan on 2018/01/30
+*/
+body{
+    margin: auto;
+    padding: auto;
+}
+.left{
+    margin-top: 20px;
+}
+.leftPie{
+    float:left;
+}
+.layui-table{
+    float:right;
+}

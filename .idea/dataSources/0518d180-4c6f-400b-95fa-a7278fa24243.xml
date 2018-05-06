@@ -21,8 +21,8 @@
     <schema id="15" parent="1" name="sys"/>
     <schema id="16" parent="1" name="test"/>
     <schema id="17" parent="1" name="world"/>
-    <schema id="18" parent="1" name="fwlogdemo"/>
-    <table id="19" parent="2" name="action"/>
+    <table id="18" parent="2" name="action"/>
+    <table id="19" parent="2" name="advice"/>
     <table id="20" parent="2" name="destip"/>
     <table id="21" parent="2" name="destport"/>
     <table id="22" parent="2" name="events"/>
@@ -35,391 +35,418 @@
     <table id="29" parent="2" name="suspectedevents"/>
     <table id="30" parent="2" name="type"/>
     <table id="31" parent="2" name="user"/>
-    <column id="32" parent="19" name="id">
+    <column id="32" parent="18" name="id">
       <Position>1</Position>
       <DataType>int(2)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="33" parent="19" name="desc">
+    <column id="33" parent="18" name="desc">
       <Position>2</Position>
       <DataType>varchar(15)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="34" parent="19" name="PRIMARY">
+    <key id="34" parent="18" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="35" parent="20" name="id">
+    <column id="35" parent="19" name="id">
+      <Position>1</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="36" parent="19" name="type">
+      <Position>2</Position>
+      <Comment>攻击类型</Comment>
+      <DataType>varchar(40)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="37" parent="19" name="advice">
+      <Position>3</Position>
+      <Comment>对于这种攻击行为的建议</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="38" parent="19" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="39" parent="20" name="id">
       <Position>1</Position>
       <DataType>bigint(10)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="36" parent="20" name="sTime">
+    <column id="40" parent="20" name="sTime">
       <Position>2</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="37" parent="20" name="eTime">
+    <column id="41" parent="20" name="eTime">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="38" parent="20" name="value">
+    <column id="42" parent="20" name="value">
       <Position>4</Position>
       <DataType>bigint(15)|0</DataType>
     </column>
-    <column id="39" parent="20" name="number">
+    <column id="43" parent="20" name="number">
       <Position>5</Position>
       <DataType>int(10)|0</DataType>
     </column>
-    <column id="40" parent="20" name="average">
+    <column id="44" parent="20" name="average">
       <Position>6</Position>
       <DataType>double(10,2)|0</DataType>
     </column>
-    <column id="41" parent="20" name="variance">
+    <column id="45" parent="20" name="variance">
       <Position>7</Position>
       <DataType>double(10,2)|0</DataType>
     </column>
-    <key id="42" parent="20" name="PRIMARY">
+    <key id="46" parent="20" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="43" parent="21" name="id">
+    <column id="47" parent="21" name="id">
       <Position>1</Position>
       <DataType>bigint(10)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="44" parent="21" name="sTime">
+    <column id="48" parent="21" name="sTime">
       <Position>2</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="45" parent="21" name="eTime">
+    <column id="49" parent="21" name="eTime">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="46" parent="21" name="value">
+    <column id="50" parent="21" name="value">
       <Position>4</Position>
       <DataType>int(2)|0</DataType>
     </column>
-    <column id="47" parent="21" name="number">
+    <column id="51" parent="21" name="number">
       <Position>5</Position>
       <DataType>int(10)|0</DataType>
     </column>
-    <column id="48" parent="21" name="average">
+    <column id="52" parent="21" name="average">
       <Position>6</Position>
       <DataType>double(10,2)|0</DataType>
     </column>
-    <column id="49" parent="21" name="variance">
+    <column id="53" parent="21" name="variance">
       <Position>7</Position>
       <DataType>double(10,2)|0</DataType>
     </column>
-    <key id="50" parent="21" name="PRIMARY">
+    <key id="54" parent="21" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="51" parent="22" name="id">
+    <column id="55" parent="22" name="id">
       <Position>1</Position>
       <DataType>int(10)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="52" parent="22" name="desc">
+    <column id="56" parent="22" name="description">
       <Position>2</Position>
       <DataType>varchar(400)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="53" parent="22" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="54" parent="23" name="fwlogId">
-      <Position>1</Position>
-      <DataType>bigint(20)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="55" parent="23" name="time">
-      <Position>2</Position>
-      <DataType>datetime|0</DataType>
-    </column>
-    <column id="56" parent="23" name="srcIP">
-      <Position>3</Position>
-      <DataType>bigint(15)|0</DataType>
-    </column>
-    <column id="57" parent="23" name="srcPort">
-      <Position>4</Position>
-      <DataType>int(6)|0</DataType>
-    </column>
-    <column id="58" parent="23" name="destIP">
-      <Position>5</Position>
-      <DataType>bigint(15)|0</DataType>
-    </column>
-    <column id="59" parent="23" name="destPort">
-      <Position>6</Position>
-      <DataType>int(6)|0</DataType>
-    </column>
-    <column id="60" parent="23" name="number">
-      <Position>7</Position>
-      <Comment>预处理统计次数</Comment>
-      <DataType>int(10)|0</DataType>
-    </column>
-    <key id="61" parent="23" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>fwlogId</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="62" parent="24" name="rawFwlogId">
-      <Position>1</Position>
-      <DataType>bigint(20)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="63" parent="24" name="internalIP">
-      <Position>2</Position>
-      <DataType>varchar(15)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="64" parent="24" name="produceTime">
-      <Position>3</Position>
-      <DataType>datetime|0</DataType>
-    </column>
-    <column id="65" parent="24" name="saveTime">
-      <Position>4</Position>
-      <DataType>datetime|0</DataType>
-    </column>
-    <column id="66" parent="24" name="mathedStrategy">
-      <Position>5</Position>
-      <DataType>varchar(150)|0</DataType>
-    </column>
-    <column id="67" parent="24" name="accessStrategy">
-      <Position>6</Position>
-      <DataType>varchar(50)|0</DataType>
-    </column>
-    <column id="68" parent="24" name="originalSrcIP">
-      <Position>7</Position>
-      <DataType>bigint(15)|0</DataType>
-    </column>
-    <column id="69" parent="24" name="originalSrcPort">
-      <Position>8</Position>
-      <DataType>int(6)|0</DataType>
-    </column>
-    <column id="70" parent="24" name="originalDestIP">
-      <Position>9</Position>
-      <DataType>bigint(15)|0</DataType>
-    </column>
-    <column id="71" parent="24" name="originalDestPort">
-      <Position>10</Position>
-      <DataType>int(6)|0</DataType>
-    </column>
-    <column id="72" parent="24" name="convertedSrcIP">
-      <Position>11</Position>
-      <DataType>bigint(15)|0</DataType>
-    </column>
-    <column id="73" parent="24" name="convertedSrcPort">
-      <Position>12</Position>
-      <DataType>int(6)|0</DataType>
-    </column>
-    <column id="74" parent="24" name="convertedDestIP">
-      <Position>13</Position>
-      <DataType>bigint(15)|0</DataType>
-    </column>
-    <column id="75" parent="24" name="convertedDestPort">
-      <Position>14</Position>
-      <DataType>int(6)|0</DataType>
-    </column>
-    <column id="76" parent="24" name="protocolNumber">
-      <Position>15</Position>
-      <DataType>int(3)|0</DataType>
-    </column>
-    <column id="77" parent="24" name="safetyDomain">
-      <Position>16</Position>
-      <Comment>1表示outside-&gt;server,0表示server-&gt;outside</Comment>
-      <DataType>int(1)|0</DataType>
-    </column>
-    <column id="78" parent="24" name="action">
-      <Position>17</Position>
-      <Comment>1表示允许，0-不允许</Comment>
-      <DataType>int(1)|0</DataType>
-    </column>
-    <key id="79" parent="24" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>rawFwlogId</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="80" parent="25" name="id">
-      <Position>1</Position>
-      <DataType>int(2)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="81" parent="25" name="desc">
-      <Position>2</Position>
-      <DataType>varchar(20)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <key id="82" parent="25" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="83" parent="26" name="id">
-      <Position>1</Position>
-      <DataType>int(3)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="84" parent="26" name="port">
-      <Position>2</Position>
-      <DataType>int(3)|0</DataType>
-    </column>
-    <column id="85" parent="26" name="desc">
+    <column id="57" parent="22" name="attackType">
       <Position>3</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="86" parent="26" name="PRIMARY">
+    <key id="58" parent="22" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="87" parent="27" name="Id">
+    <column id="59" parent="23" name="fwlogId">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="60" parent="23" name="time">
+      <Position>2</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="61" parent="23" name="srcIP">
+      <Position>3</Position>
+      <DataType>bigint(15)|0</DataType>
+    </column>
+    <column id="62" parent="23" name="srcPort">
+      <Position>4</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="63" parent="23" name="destIP">
+      <Position>5</Position>
+      <DataType>bigint(15)|0</DataType>
+    </column>
+    <column id="64" parent="23" name="destPort">
+      <Position>6</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="65" parent="23" name="number">
+      <Position>7</Position>
+      <Comment>预处理统计次数</Comment>
+      <DataType>int(10)|0</DataType>
+    </column>
+    <key id="66" parent="23" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>fwlogId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="67" parent="24" name="rawFwlogId">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="68" parent="24" name="internalIP">
+      <Position>2</Position>
+      <DataType>varchar(15)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="24" name="produceTime">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="70" parent="24" name="saveTime">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="71" parent="24" name="mathedStrategy">
+      <Position>5</Position>
+      <DataType>varchar(150)|0</DataType>
+    </column>
+    <column id="72" parent="24" name="accessStrategy">
+      <Position>6</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="73" parent="24" name="originalSrcIP">
+      <Position>7</Position>
+      <DataType>bigint(15)|0</DataType>
+    </column>
+    <column id="74" parent="24" name="originalSrcPort">
+      <Position>8</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="75" parent="24" name="originalDestIP">
+      <Position>9</Position>
+      <DataType>bigint(15)|0</DataType>
+    </column>
+    <column id="76" parent="24" name="originalDestPort">
+      <Position>10</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="77" parent="24" name="convertedSrcIP">
+      <Position>11</Position>
+      <DataType>bigint(15)|0</DataType>
+    </column>
+    <column id="78" parent="24" name="convertedSrcPort">
+      <Position>12</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="79" parent="24" name="convertedDestIP">
+      <Position>13</Position>
+      <DataType>bigint(15)|0</DataType>
+    </column>
+    <column id="80" parent="24" name="convertedDestPort">
+      <Position>14</Position>
+      <DataType>int(6)|0</DataType>
+    </column>
+    <column id="81" parent="24" name="protocolNumber">
+      <Position>15</Position>
+      <DataType>int(3)|0</DataType>
+    </column>
+    <column id="82" parent="24" name="safetyDomain">
+      <Position>16</Position>
+      <Comment>1表示outside-&gt;server,0表示server-&gt;outside</Comment>
+      <DataType>int(1)|0</DataType>
+    </column>
+    <column id="83" parent="24" name="action">
+      <Position>17</Position>
+      <Comment>1表示允许，0-不允许</Comment>
+      <DataType>int(1)|0</DataType>
+    </column>
+    <key id="84" parent="24" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>rawFwlogId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="85" parent="25" name="id">
+      <Position>1</Position>
+      <DataType>int(2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="86" parent="25" name="desc">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="87" parent="25" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="88" parent="26" name="id">
+      <Position>1</Position>
+      <DataType>int(3)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="89" parent="26" name="port">
+      <Position>2</Position>
+      <DataType>int(3)|0</DataType>
+    </column>
+    <column id="90" parent="26" name="desc">
+      <Position>3</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="91" parent="26" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="92" parent="27" name="Id">
       <Position>1</Position>
       <DataType>bigint(10)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="88" parent="27" name="sTime">
+    <column id="93" parent="27" name="sTime">
       <Position>2</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="89" parent="27" name="eTime">
+    <column id="94" parent="27" name="eTime">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="90" parent="27" name="value">
+    <column id="95" parent="27" name="value">
       <Position>4</Position>
       <DataType>bigint(15)|0</DataType>
     </column>
-    <column id="91" parent="27" name="number">
+    <column id="96" parent="27" name="number">
       <Position>5</Position>
       <DataType>int(10)|0</DataType>
     </column>
-    <column id="92" parent="27" name="average">
+    <column id="97" parent="27" name="average">
       <Position>6</Position>
       <DataType>double(10,2)|0</DataType>
     </column>
-    <column id="93" parent="27" name="variance">
+    <column id="98" parent="27" name="variance">
       <Position>7</Position>
       <DataType>double(10,2)|0</DataType>
     </column>
-    <key id="94" parent="27" name="PRIMARY">
+    <key id="99" parent="27" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="95" parent="28" name="id">
+    <column id="100" parent="28" name="id">
       <Position>1</Position>
       <DataType>bigint(10)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="96" parent="28" name="sTime">
+    <column id="101" parent="28" name="sTime">
       <Position>2</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="97" parent="28" name="eTime">
+    <column id="102" parent="28" name="eTime">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="98" parent="28" name="value">
+    <column id="103" parent="28" name="value">
       <Position>4</Position>
       <DataType>int(6)|0</DataType>
     </column>
-    <column id="99" parent="28" name="number">
+    <column id="104" parent="28" name="number">
       <Position>5</Position>
       <DataType>int(10)|0</DataType>
     </column>
-    <column id="100" parent="28" name="average">
+    <column id="105" parent="28" name="average">
       <Position>6</Position>
       <DataType>double(10,2)|0</DataType>
     </column>
-    <column id="101" parent="28" name="variance">
+    <column id="106" parent="28" name="variance">
       <Position>7</Position>
       <DataType>double(10,2)|0</DataType>
     </column>
-    <key id="102" parent="28" name="PRIMARY">
+    <key id="107" parent="28" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="103" parent="29" name="id">
+    <column id="108" parent="29" name="id">
       <Position>1</Position>
       <DataType>int(10)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="104" parent="29" name="sTime">
+    <column id="109" parent="29" name="sTime">
       <Position>2</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="105" parent="29" name="eTime">
+    <column id="110" parent="29" name="eTime">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="106" parent="29" name="type">
+    <column id="111" parent="29" name="type">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="107" parent="29" name="Value">
+    <column id="112" parent="29" name="Value">
       <Position>5</Position>
       <DataType>bigint(15)|0</DataType>
     </column>
-    <index id="108" parent="29" name="type">
+    <index id="113" parent="29" name="type">
       <ColNames>type</ColNames>
     </index>
-    <key id="109" parent="29" name="PRIMARY">
+    <key id="114" parent="29" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="110" parent="29" name="suspectedevents_ibfk_1">
+    <foreign-key id="115" parent="29" name="suspectedevents_ibfk_1">
       <ColNames>type</ColNames>
       <RefSchemaName>fwalllog</RefSchemaName>
       <RefTableName>type</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="111" parent="30" name="id">
+    <column id="116" parent="30" name="id">
       <Position>1</Position>
       <DataType>int(2)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="112" parent="30" name="desc">
+    <column id="117" parent="30" name="desc">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="113" parent="30" name="PRIMARY">
+    <key id="118" parent="30" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="114" parent="31" name="id">
+    <column id="119" parent="31" name="id">
       <Position>1</Position>
       <DataType>int(3)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="115" parent="31" name="name">
+    <column id="120" parent="31" name="name">
       <Position>2</Position>
       <DataType>varchar(10)|0</DataType>
     </column>
-    <column id="116" parent="31" name="password">
+    <column id="121" parent="31" name="password">
       <Position>3</Position>
       <DataType>varchar(10)|0</DataType>
     </column>
-    <key id="117" parent="31" name="PRIMARY">
+    <key id="122" parent="31" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

@@ -1,0 +1,12 @@
+body{
+    margin: auto;
+    padding: auto;
+}
+ h4{
+     font-size: 17px;
+     font-weight: bold;
+ }
+ .eventTable{
+     margin-top:25px;
+     /*float:right;*/
+ }

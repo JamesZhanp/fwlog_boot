@@ -1,0 +1,32 @@
+body{
+    margin: auto;
+    padding:auto;
+}
+.day-attack-statics, .week-attack-statics, .attack-statics, .attacked-statics{
+    margin-top:10px;
+    background-color: white;
+}
+.day-attack-statics, .attack-statics{
+    /*margin-left:10px;*/
+}
+.week-attack-statics, .attacked-statics{
+    /*margin-right:10px;*/
+}
+.day-attack-title, .week-attack-title, .attacked-title, .attacked-title{
+    display: inline-block;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-left:20px;
+}
+.day-attack-statics{
+    /*float: left;*/
+}
+.week-attack-statics{
+    /*float: right;*/
+}
+.attack-statics{
+    /*float: left;*/
+}
+.attacked-statics{
+    /*float:right;*/
+}

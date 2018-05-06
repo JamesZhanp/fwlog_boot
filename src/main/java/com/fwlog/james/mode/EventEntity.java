@@ -8,7 +8,6 @@ import java.util.Date;
  * created by jamesZhan on 2018/01/30
  */
 public class EventEntity {
-    private Integer id;
     private Date starTime;
     private Date endTime;
     private String ipAddress;
@@ -17,22 +16,13 @@ public class EventEntity {
     private String advice;//建议
 
     public EventEntity(){}
-    public EventEntity(Integer id, Date starTime, Date endTime, String ipAddress, String desc, String attackType, String advice) {
-        this.id = id;
+    public EventEntity( Date starTime, Date endTime, String ipAddress, String desc, String attackType, String advice) {
         this.starTime = starTime;
         this.endTime = endTime;
         this.ipAddress = ipAddress;
         this.desc = desc;
         this.attackType = attackType;
         this.advice = advice;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Date getStarTime() {
@@ -86,7 +76,6 @@ public class EventEntity {
     @Override
     public String toString() {
         return "EventEntity{" +
-                "id=" + id +
                 ", starTime=" + starTime +
                 ", endTime=" + endTime +
                 ", ipAddress='" + ipAddress + '\'' +

@@ -2,6 +2,31 @@
  * Created by 16255 on 2018/3/5.
  */
 
+var timestamp = new Date().getTime();
+console.dir(timestamp);
+// 发送那个时间至后端
+    $.ajax({
+       url:'./events/getTime.do',
+        data:{
+           date: timestamp
+        },
+        dataType:'json',//数据类型
+        type:'post'//传送的方式
+    }).done(function (json) {
+        console.dir(json);//输出到控制台
+    });
+
+
+
+    // 获取后端数据
+    // $.ajax({
+    //     url:'./events/getTodayEvents.do',
+    //     data:{},
+    //     dataType:'json',
+    //     type:'post'
+    // }).done(function (json) {
+    //     console.dir(json)
+    // });
 //the io flow of the fire wall
 var myCharts = echarts.init(document.getElementById('io-flow'));
 option = {
@@ -53,7 +78,6 @@ myCharts.setOption(option);
 
 //the number of today's attack event
 var myChart = echarts.init(document.getElementById('day-attack-charts'));
-
 option = {
     title:{
         text:'当日攻击事件数量及比例'

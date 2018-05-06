@@ -39,6 +39,10 @@ public class DefaultController {
     public String trafficAna(){
         return "pages/trafficAna";
     }
+    @GetMapping("/fwlog/fileLoad")
+    public String fileLoad(){
+        return "pages/fileLoad";
+    }
 
     @GetMapping("/logout")
     public String logout(HttpSession session){

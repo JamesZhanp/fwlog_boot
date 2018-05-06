@@ -39,9 +39,9 @@
             <a href="/fwlog/trafficAna">流量分析</a>
         </li>
         <li class="layui-nav-item">
-            <a href="redirect:fileLoad">日志管理</a>
+            <a href="/fwlog/fileLoad">日志管理</a>
             <dl class="layui-nav-child">
-                <dd><a href="redirect:fileLoad">上传日志</a></dd>
+                <dd><a href="/fwlog/fileLoad">上传日志</a></dd>
                 <dd><a href="javascript:;">配置管理</a></dd>
             </dl>
         </li>
@@ -86,29 +86,19 @@
         var element = layui.element,table = layui.table; //导航的hover效果、二级菜单等功能，需要依赖element模块
         //监听导航点击
         element.on('nav(demo)', function(elem){
-            //console.log(elem)
             layer.msg(elem.text());
         });
-
         table.render({
             elem: '#newAttackEvent'
-//                        ,url:'/demo/table/user/'
+            ,url:'./events/getNewestEvent.do'//数据源
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,cols: [[
-                {field:'startTime', width:150, title: '开始时间', sort: true}
-                ,{field:'endTime', width:150, title: '结束时间',sort:true}
-                ,{field:'ipAddress', width:150, title: 'ip地址'}
-                ,{field:'attackType', width:150, title: '攻击类型'}
+                {field:'startTime', width:160, title: '开始时间', sort: true}
+                ,{field:'endTime', width:160, title: '结束时间',sort:true}
+                ,{field:'ipAddress', width:140, title: 'ip地址'}
+                ,{field:'attackType', width:140, title: '攻击类型'}
             ]]
         });
-        // 表单
-//        table.render({
-//            elem:'#test'
-//            ,url:'/demo/table/user/'
-//            ,cols:[
-//                {field:'id',width:80,title:'ID',sort:true}
-//            ],page:true
-//        });v
     });
 </script>
 </body>

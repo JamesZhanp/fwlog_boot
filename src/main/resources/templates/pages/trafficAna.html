@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/common/layui/css/layui.css"  media="all">
     <link rel="stylesheet" href="/admin/css/nav.css">
     <link rel="stylesheet" href="/admin/css/trafficAna.css">
+    <script type="text/javascript" src="/admin/jsplug/jquery.js"></script>
     <script type="text/javascript" src="/admin/jsplug/echarts.js"></script>
 </head>
 <body>
@@ -22,22 +23,22 @@
     </div>
     <div class="leftNav">
         <li class="layui-nav-item">
-            <a href="index.html">首页</a>
+            <a href="/fwlog/index">首页</a>
         </li>
         <li class="layui-nav-item">
-            <a href="securityTab.html">安全分析</a>
+            <a href="/fwlog/securityTab">安全分析</a>
             <dl class="layui-nav-child">
-                <dd><a href="securityTab.html">可视化</a></dd>
-                <dd><a href="securityAna.html">攻击事件</a></dd>
+                <dd><a href="/fwlog/securityTab">可视化</a></dd>
+                <dd><a href="/fwlog/securityAna">攻击事件</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item">
-            <a href="trafficAna.html">流量分析</a>
+            <a href="/fwlog/trafficAna">流量分析</a>
         </li>
         <li class="layui-nav-item">
-            <a href="fileLoad.html">日志管理</a>
+            <a href="/fwlog/fileLoad">日志管理</a>
             <dl class="layui-nav-child">
-                <dd><a href="fileLoad.html">上传日志</a></dd>
+                <dd><a href="/fwlog/fileLoad">上传日志</a></dd>
                 <dd><a href="javascript:;">配置管理</a></dd>
             </dl>
         </li>
@@ -78,7 +79,7 @@
         <div class="layui-col-md6">
             <!--协议组别访问情况-->
             <div class="protocol-access-statics">
-                <span class="protocol-access-title">协议组访问情况</span>
+                <span class="protocol-access-title">端口访问情况</span>
                 <div class="protocol-access-chart" id="protocolAccess" style="width: 600px;height: 300px;"></div>
             </div>
         </div>

@@ -31,14 +31,6 @@ dependencies {
     compile group: 'log4j', name: 'log4j', version: '1.2.17'
 }
 
-//tasks run(type:JavaExec,dependsOn:'classes'){
-//    description '运行时指定main函数的java'
-//    classpath =sourceSets.main.runtimeClasspath
-//    if (project.hasProperty('main')){
-//        main = "com.fwlog.james.${project.getProperty('main')}"
-//    }
-//}
-
 task init << {
     description '初始化工程目录'
     sourceSets*.java.srcDirs*.each { it.mkdirs() }

@@ -19,7 +19,7 @@ import java.util.List;
  * @Date：2018-01-18
  */
 @Configuration
-public class Pretreatment {
+public class    Pretreatment {
 //    @Autowired
 //    private FwlogService fwlogService;
     //将防火墙deny的以及server->outside的数据全都删除
