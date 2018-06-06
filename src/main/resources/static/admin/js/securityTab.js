@@ -22,11 +22,11 @@ option1 = {
             position:'center',
             center: ['50%', '60%'],
             data:[
-                {value:800, name:'病毒攻击'},
-                {value:700, name:'异常流量'},
-                {value:600, name:'扫描攻击'},
-                {value:500, name:'DDos攻击'},
-                {value:300, name:'其它'}
+                {value:23, name:'病毒攻击'},
+                {value:22, name:'异常流量'},
+                {value:35, name:'扫描攻击'},
+                {value:20, name:'DDos攻击'},
+                {value:30, name:'其它'}
             ],
             itemStyle: {
                 emphasis: {
@@ -53,7 +53,7 @@ option = {
         type: 'value'
     },
     series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        data: [20, 32, 41, 44, 48, 59, 68],
         type: 'line',
         smooth: true
     }]
@@ -77,22 +77,22 @@ option = {
         containLabel: true
     },
     xAxis: {
-        name:'占比',
+        name:'次数',
         type: 'value',
         splitLine:{ show:false},
         boundaryGap: [0, 0.01]
 
     },
     yAxis: {
-        name:'IP地址',
+        name:'内网IP',
         type: 'category',
-        data:['172.31.214.196','172.31.214.193','172.31.214.192','172.31.214.191','172.31.214.199']
+        data:['202.107.201.4','202.107.201.104','202.107.201.89','202.107.201.173','202.107.201.206']
     },
     series: [
         {
             type: 'bar',
             barWidth : 15,
-            data: [223489, 529034, 304970, 131744, 530230],
+            data: [89, 83, 70, 44, 30],
             itemStyle: {
                 normal:{
                     color: function (params){
@@ -123,7 +123,7 @@ option = {
         containLabel: true
     },
     xAxis: {
-        name:'占比',
+        name:'次数',
         type: 'value',
         splitLine:{ show:false},
         boundaryGap: [0, 0.01]
@@ -132,13 +132,13 @@ option = {
     yAxis: {
         name:'IP地址',
         type: 'category',
-        data:['172.31.214.196','172.31.214.193','172.31.214.192','172.31.214.191','172.31.214.199']
+        data:['172.31.214.196','89.214.213.21','290.192.168.1','172.61.216.149','192.31.214.132']
     },
     series: [
         {
             type: 'bar',
             barWidth : 18,
-            data: [123489, 529034, 314970, 481744, 220230],
+            data: [89, 74, 70, 44, 30],
             itemStyle: {
                 normal:{
                     color: function (params){

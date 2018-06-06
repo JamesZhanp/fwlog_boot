@@ -8,6 +8,7 @@ import com.fwlog.james.service.RawfwlogService;
 import com.fwlog.james.utils.AddressUtils;
 import com.fwlog.james.utils.IPChangeUtil;
 import com.google.gson.Gson;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +77,8 @@ public class FwlogController {
      */
     @GetMapping(value = "/getAccessSource.do")
     @ResponseBody
-    public String getAccessSource(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    @Test
+    public void getAccessSource(HttpServletRequest request, HttpServletResponse response) throws Exception{
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
         //获取所有的访问的数据
@@ -89,6 +91,9 @@ public class FwlogController {
             long ipAddr = fwlogList.get(i).getSrcip();
             String ipAddress = new IPChangeUtil().ipLongToStr(ipAddr);
             String city = new AddressUtils().getAddresses("ip=" + ipAddress,"utf-8");
+            if(city.equals("内部IP")){
+                city = "杭州";
+            }
 //            查找这个城市的是否已经存在，若存在将访问的数量刷新，反之将这个城市加入list
             logger.info("IP地址为" + ipAddress + "城市为：" + city);
             boolean isFind = false;
@@ -108,13 +113,16 @@ public class FwlogController {
                 cityList.add(new IPEntity(city,1));
             }
         }
-        //获取访问数量前10的城市
-        cityList = cityList.subList(0,10);
+        if (cityList.size() > 10){
+            //获取访问数量前10的城市
+            cityList = cityList.subList(0,10);
+        }
         Gson gson = new Gson();
         String json = gson.toJson(cityList);
-        out.write(json);
-        out.flush();
-        out.close();
-        return null;
+        System.out.println(json);
+//        out.write(json);
+//        out.flush();
+//        out.close();
+//        return null;
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.com">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>防火墙日志分析系统</title>
@@ -9,9 +9,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <!-- load css -->
-    <link rel="stylesheet" type="text/css" href="/common/layui/css/layui.css" media="all">
-    <link rel="stylesheet" type="text/css" href="/admin/css/login.css" media="all">
+    <link rel="stylesheet" th:href="@{/common/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/admin/css/login.css}">
 </head>
 <body>
 <div class="layui-canvs"></div>
@@ -20,19 +19,12 @@
         <strong>防火墙日志分析系统</strong>
         <em>Analysis System</em>
     </h1>
-    <form name="loginForm" accept-charset="utf-8" action="/fwlog/index" method="POST">
+    <form name="loginForm" accept-charset="utf-8" action="/fwlog/login" method="post">
         <div class="layui-user-icon larry-login">
-            <input name="name" type="text" placeholder="用户名" class="login_txtbx"/>
+            <input name="name" type="text" placeholder="用户名" class="login_txtbx" id="name"/>
         </div>
         <div class="layui-pwd-icon larry-login">
-            <input name="password" type="password" placeholder="密码" class="login_txtbx" />
-        </div>
-        <!--验证码-->
-        <div class="layui-val-icon larry-login">
-            <div class="layui-code-box">
-                <input type="text" id="code" name="code" placeholder="验证码" maxlength="4" class="login_txtbx">
-                <img src="/admin/images/verifyimg.png" alt="" class="verifyImg" id="verifyImg" onclick="javascript:this.src='xxx'+Math.random();">
-            </div>
+            <input name="password" type="password" placeholder="密码" class="login_txtbx" id="password"/>
         </div>
         <div class="layui-submit larry-login">
             <input type="submit" value="立即登陆" class="submit_btn"/>
@@ -42,9 +34,9 @@
         <p>© JamesZhan-Lab514 版权所有</p>
     </div>
 </div>
-<script type="text/javascript" src="/common/layui/layui.all.js"></script>
-<script type="text/javascript" src="/admin/js/login.js"></script>
-<script type="text/javascript" src="/admin/jsplug/jparticle.jquery.js"></script>
+<script type="text/javascript" th:src="@{/common/layui/layui.all.js}"></script>
+<script type="text/javascript" th:src="@{/admin/js/login.js}"></script>
+<script type="text/javascript" th:src="@{/admin/jsplug/jparticle.jquery.js}"></script>
 <script type="text/javascript">
     $(function(){
         $(".layui-canvs").jParticle({
@@ -52,7 +44,6 @@
             color: "#E6E6E6"
         });
     });
-
 </script>
 </body>
 </html>

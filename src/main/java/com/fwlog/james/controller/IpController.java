@@ -89,7 +89,7 @@ public class IpController {
         out.flush();
         out.close();
         //返回上述内容
-        return null;
+        return json;
     }
 
     /**

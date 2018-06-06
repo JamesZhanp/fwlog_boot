@@ -42,7 +42,7 @@ option = {
                 {value:23, name:'病毒攻击'},
                 {value:22, name:'异常流量'},
                 {value:35, name:'扫描攻击'},
-                {value:20, name:'DDoS攻击'},
+                {value:20, name:'DDoS攻击'}
             ]
         }
     ]
@@ -60,7 +60,6 @@ layui.use('table',function(){
             ,groups: 1 //只显示 1 个连续页码
             ,first: false //不显示首页
             ,last: false //不显示尾页
-
         }
         ,cols: [[
             {field:'id', width:80, title: 'id', sort: true}

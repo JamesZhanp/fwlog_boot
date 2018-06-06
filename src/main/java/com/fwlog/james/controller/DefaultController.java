@@ -21,30 +21,51 @@ public class DefaultController {
     }
 
     @GetMapping("/fwlog/index")
-    public String index(){
-        return "pages/index";
+    public String index(HttpSession session){
+        if(session.getAttribute(WebSecurityConfig.SESSION_KEY) == null){
+            return "redirect:/fwlog/login";
+        }else{
+            return "pages/index";
+        }
     }
 
     @GetMapping("/fwlog/securityAna")
-    public String securityAna(){
-        return "pages/securityAna";
+    public String securityAna(HttpSession session){
+//        避免出现用户没有登录就直接访问页面的情况
+        if(session.getAttribute(WebSecurityConfig.SESSION_KEY) == null){
+            return "redirect:/fwlog/login";
+        }else{
+            return "pages/securityAna";
+        }
     }
 
     @GetMapping("/fwlog/securityTab")
-    public String securityTab(){
-        return "pages/securityTab";
+    public String securityTab(HttpSession session){
+        if(session.getAttribute(WebSecurityConfig.SESSION_KEY) == null){
+            return "redirect:/fwlog/login";
+        }else{
+            return "pages/securityTab";
+        }
     }
 
     @GetMapping("/fwlog/trafficAna")
-    public String trafficAna(){
-        return "pages/trafficAna";
+    public String trafficAna(HttpSession session){
+        if(session.getAttribute(WebSecurityConfig.SESSION_KEY) == null){
+            return "redirect:/fwlog/login";
+        }else{
+            return "pages/trafficAna";
+        }
     }
     @GetMapping("/fwlog/fileLoad")
-    public String fileLoad(){
-        return "pages/fileLoad";
+    public String fileLoad(HttpSession session){
+//        if(session.getAttribute(WebSecurityConfig.SESSION_KEY) == null){
+//            return "redirect:/fwlog/login";
+//        }else{
+            return "pages/fileLoad";
+//        }
     }
 
-    @GetMapping("/logout")
+    @GetMapping("/fwlog/logout")
     public String logout(HttpSession session){
 //        清除session内部的数据
         session.removeAttribute(WebSecurityConfig.SESSION_KEY);

@@ -38,7 +38,7 @@ public class IPChangeUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(new IPChangeUtil().ipStrToLong("172.31.214.196"));
+        System.out.println(new IPChangeUtil().ipStrToLong("202.107.201.20"));
         System.out.println(new IPChangeUtil().ipLongToStr(new IPChangeUtil().ipStrToLong("172.31.214.196")));
     }
 }

@@ -161,24 +161,6 @@ public class EventController {
         return eventNumEntities;
     }
 
-    @PostMapping(value = "/getTime.do")
-    @ResponseBody
-    public void getTime(Long date,HttpServletResponse response){
-        //规定字符的编码格式
-        response.setContentType("text/plain;charset=utf-8");
-        response.setCharacterEncoding("utf-8");
-        System.out.println(date);
-        todayTime = new Date(date);
-
-        Map<String, Object> json = new HashMap<String,Object>();
-        json.put("time",todayTime);
-        try{
-            Gson gson = new Gson();
-            response.getWriter().write(gson.toJson(json));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
     /**
      * 返回发起攻击最多的IP地址
@@ -373,9 +355,20 @@ public class EventController {
                 break;
         }
         List<Events> eventsList = eventsService.getAll();
-
-
         return null;
     }
 
+
+    /**
+     * 获取所有的攻击事件
+     * @param request
+     * @param response
+     * @return
+     */
+    @PostMapping("/getAllEvents")
+    @ResponseBody
+    public String getAllEvents(HttpServletRequest request,HttpServletResponse response){
+//        response.setCharacterEncoding();
+        return null;
+    }
 }
